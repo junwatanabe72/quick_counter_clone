@@ -20,6 +20,7 @@ class TimerStore with ChangeNotifier {
   }
 
   void updateCounter(int status) {
+    // inplay
     if (status - 1 == _timeCount) {
       endTimer();
       notifyListeners();
