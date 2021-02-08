@@ -7,15 +7,18 @@ import 'package:quick_counter_clone/components/organisims/game/counterButtons.da
 import 'package:quick_counter_clone/components/templetes/backgroundImage.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
-import 'package:quick_counter_clone/stores/user.dart';
+import 'package:quick_counter_clone/util/var/index.dart';
+// import 'package:quick_counter_clone/stores/user.dart';
 import "../components/templetes/header/game.dart";
+import 'package:quick_counter_clone/util/hook/gameModeList.dart';
 
 class Game extends StatelessWidget {
   static const routeName = "/game";
   @override
   Widget build(BuildContext context) {
-    Provider.of<UserStore>(context);
+    // Provider.of<UserStore>(context);
     final _inPlay = context.select((GameStore store) => store.game.inPlay);
+    final _gameMode = context.watch<GameStore>().game.mode;
     final _timerUp = context.select((TimerStore store) => store.timeUp);
     final size = MediaQuery.of(context).size;
     final padding = MediaQuery.of(context).padding;
@@ -49,16 +52,10 @@ class Game extends StatelessWidget {
                 height: textHeight,
                 alignment: Alignment.bottomCenter,
                 child: GameText(inPlay: _inPlay)),
-            _timerUp
-                ? const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Text("Time`s Up!",
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 40,
-                          height: 1.0,
-                        )))
-                : CounterButtons(width: gameWidth, height: buttonsHeight),
+            CounterButtons(
+                list: shuffleList(textList[_gameMode]),
+                width: gameWidth,
+                height: buttonsHeight),
             Space(
               height: comHeight,
             )
