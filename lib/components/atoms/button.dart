@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/util/hook/soundPool.dart';
+import 'package:quick_counter_clone/util/hook/soundPool.dart';
 
 class Button extends StatelessWidget {
   final String text;

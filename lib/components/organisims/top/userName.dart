@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/components/organisims/top/textField.dart';
-// import 'package:renda_clone/components/atoms/input.dart';
+import 'package:quick_counter_clone/components/organisims/top/textField.dart';
+// import 'package:quick_counter_clone/components/atoms/input.dart';
 
 const hintText = 'Enter Nickname...';
 const submitText = "done";

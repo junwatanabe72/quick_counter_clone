@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/components/organisims/top/board.dart';
-import 'package:renda_clone/components/organisims/top/roll.dart';
+import 'package:quick_counter_clone/components/organisims/top/board.dart';
+import 'package:quick_counter_clone/components/organisims/top/roll.dart';
 
 // StatelessWidgetを継承
 class Footer extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/models/game.dart';
-import 'package:renda_clone/util/var/index.dart';
+import 'package:quick_counter_clone/models/game.dart';
+import 'package:quick_counter_clone/util/var/index.dart';
 
 class GameStore extends ChangeNotifier {
   Game _game = Game(

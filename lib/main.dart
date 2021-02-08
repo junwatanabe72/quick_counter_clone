@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:renda_clone/stores/game.dart';
-import 'package:renda_clone/stores/timer.dart';
-import 'package:renda_clone/stores/user.dart';
-import 'package:renda_clone/util/hook/initalData.dart';
+import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/stores/timer.dart';
+import 'package:quick_counter_clone/stores/user.dart';
+import 'package:quick_counter_clone/util/hook/initalData.dart';
 import 'pages/game.dart';
 import 'pages/index.dart';
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'renda_clone',
+      title: 'quick_counter_clone',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: ThemeData.light()
@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
                     fontSize: 12)
 
                 // textTheme: TextTheme(
-                //   bodyText1: TextStyle(),
-                //   bodyText2: TextStyle(),
+                // bodyText1: TextStyle(),
+                // bodyText2: TextStyle(),
                 )
             .apply(
               bodyColor: Colors.white,

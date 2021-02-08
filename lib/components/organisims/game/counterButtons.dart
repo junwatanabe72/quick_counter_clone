@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/components/atoms/Button.dart';
-import 'package:renda_clone/stores/game.dart';
-import 'package:renda_clone/stores/timer.dart';
+import 'package:quick_counter_clone/components/atoms/Button.dart';
+import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/stores/timer.dart';
+
+const length = 16;
+const fill = "";
 
 class CounterButtons extends StatelessWidget {
   final double height;
@@ -11,8 +14,8 @@ class CounterButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _timer = context.read<TimerStore>();
-    final _gameTime = context.read<GameStore>().game.time;
+    final _timer = context.watch<TimerStore>();
+    final _gameTime = context.watch<GameStore>().game.time;
     final _inPlay = context.select((GameStore store) => store.game.inPlay);
     final onTap = () => {
           if (_inPlay)
@@ -31,7 +34,7 @@ class CounterButtons extends StatelessWidget {
           spacing: 5.0,
           runSpacing: 5.0,
           alignment: WrapAlignment.center,
-          children: List(16)
+          children: List<String>.filled(length, fill, growable: true)
               .map(
                 (key) => Button(
                   text: "",

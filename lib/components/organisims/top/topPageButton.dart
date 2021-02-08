@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/components/atoms/statefullButton.dart';
-import 'package:renda_clone/components/organisims/top/selectButtons.dart';
-import 'package:renda_clone/models/user.dart';
-import 'package:renda_clone/pages/game.dart';
-import 'package:renda_clone/stores/game.dart';
+import 'package:quick_counter_clone/components/atoms/statefullButton.dart';
+import 'package:quick_counter_clone/components/organisims/top/selectButtons.dart';
+import 'package:quick_counter_clone/models/user.dart';
+import 'package:quick_counter_clone/pages/game.dart';
+import 'package:quick_counter_clone/stores/game.dart';
 
 class TopPageButtons extends StatelessWidget {
   final Function changeGameMode;
@@ -20,7 +20,7 @@ class TopPageButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final _mode = context.select((GameStore store) => store.game.mode);
-    final _setGame = context.read<GameStore>().setGame;
+    final _setGame = context.watch<GameStore>().setGame;
     return Column(children: [
       SelectButtons(
           changeGameMode: this.changeGameMode,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/components/atoms/space.dart';
-import 'package:renda_clone/components/organisims/game/gameText.dart';
-import 'package:renda_clone/components/organisims/game/counterButtons.dart';
-import 'package:renda_clone/components/templetes/backgroundImage.dart';
-import 'package:renda_clone/stores/game.dart';
-import 'package:renda_clone/stores/timer.dart';
-import 'package:renda_clone/stores/user.dart';
+import 'package:quick_counter_clone/components/atoms/space.dart';
+import 'package:quick_counter_clone/components/organisims/game/gameText.dart';
+import 'package:quick_counter_clone/components/organisims/game/counterButtons.dart';
+import 'package:quick_counter_clone/components/templetes/backgroundImage.dart';
+import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/stores/timer.dart';
+import 'package:quick_counter_clone/stores/user.dart';
 import "../components/templetes/header/game.dart";
 
 class Game extends StatelessWidget {
