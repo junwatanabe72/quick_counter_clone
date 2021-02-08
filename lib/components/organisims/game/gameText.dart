@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/stores/game.dart';
+import 'package:quick_counter_clone/stores/game.dart';
 
 const leadTextA = "Press any button";
 const leadTextB = "to start";

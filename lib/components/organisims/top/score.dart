@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/stores/user.dart';
+import 'package:quick_counter_clone/stores/user.dart';
 
 class Score extends StatelessWidget {
   final String mode;

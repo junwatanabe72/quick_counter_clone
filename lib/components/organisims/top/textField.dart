@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/components/atoms/button.dart';
-import 'package:renda_clone/util/hook/lengthLimit.dart';
+import 'package:quick_counter_clone/components/atoms/button.dart';
+import 'package:quick_counter_clone/util/hook/lengthLimit.dart';
 
 const hintText = 'Enter Nickname...';
 const submitText = "done";

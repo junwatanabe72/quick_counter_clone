@@ -1,5 +1,5 @@
-import 'package:renda_clone/db/index.dart';
-import 'package:renda_clone/models/user.dart';
+import 'package:quick_counter_clone/db/index.dart';
+import 'package:quick_counter_clone/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Map<String, Object>> Function() getIntialData = () async {
