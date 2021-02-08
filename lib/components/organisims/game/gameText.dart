@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/util/var/index.dart';
 
 const leadTextA = "Press any button";
 const leadTextB = "to start";
@@ -11,6 +12,7 @@ class GameText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _gameMode = context.watch<GameStore>().game.mode;
     return Container(
         alignment: Alignment.center,
         child: inPlay
@@ -18,7 +20,7 @@ class GameText extends StatelessWidget {
                 selector: (context, game) => game.game.count,
                 builder: (context, count, child) => Container(
                     alignment: Alignment.center,
-                    child: Text(count.toString(),
+                    child: Text(textList[_gameMode][count],
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 40,

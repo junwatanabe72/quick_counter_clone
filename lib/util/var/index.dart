@@ -1,3 +1,5 @@
+import '../hook/gameModeList.dart';
+
 enum mode {
   first,
   second,
@@ -19,4 +21,10 @@ final initalCounters = {
   mode.first.toString(): "10.00",
   mode.second.toString(): "60.00",
   mode.third.toString(): "No Limit"
+};
+
+final textList = {
+  "1-30": numbersList,
+  "a-z": lowerAlperbelList,
+  "A-Z": upperAlperbelList
 };

@@ -31,7 +31,7 @@ class Button extends StatelessWidget {
           height: this.height,
           decoration: BoxDecoration(
               color: selected
-                  ? this.color.withOpacity(0.2)
+                  ? this.color.withOpacity(0.3)
                   : this.color.withOpacity(0.1),
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
@@ -43,6 +43,7 @@ class Button extends StatelessWidget {
           child: Center(
               child: Text(this.text,
                   style: TextStyle(
+                    fontSize: 20,
                     color: this.fontColor,
                   )))),
     );

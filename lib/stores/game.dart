@@ -6,6 +6,7 @@ class GameStore extends ChangeNotifier {
   Game _game = Game(
       mode: gameModes[mode.first.toString()],
       time: gameTimes[mode.first.toString()],
+      isClear: false,
       inPlay: false,
       count: 0);
   Game get game => _game;
@@ -24,22 +25,31 @@ class GameStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  setGame(int endlessCount) {
-    if (_game.mode == gameModes[mode.third.toString()]) {
-      _game.count = endlessCount;
-      inPlayToggle();
+  checkSelectedText(String value) {
+    final currentText = textList[_game.mode];
+    if (currentText[_game.count] != value) {
+      toggleInPlay();
     }
-    notifyListeners();
+    if (currentText[_game.count] == currentText.last) {
+      toggleInPlay();
+      toggleIsClear();
+    }
+    incrementCount();
   }
 
   gameEnd() => {
-        if (_game.inPlay) {inPlayToggle()},
+        if (_game.inPlay) {toggleInPlay()},
         _game.count = 0,
         notifyListeners(),
       };
 
-  inPlayToggle() => {
+  toggleInPlay() => {
         _game.inPlay = !_game.inPlay,
+        notifyListeners(),
+      };
+
+  toggleIsClear() => {
+        _game.isClear = !_game.isClear,
         notifyListeners(),
       };
 

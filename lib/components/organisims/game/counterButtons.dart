@@ -5,6 +5,7 @@ import 'package:quick_counter_clone/components/atoms/Button.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 import 'package:quick_counter_clone/util/hook/gameModeList.dart';
+import 'package:quick_counter_clone/util/var/index.dart';
 
 const length = 30;
 const fill = "";
@@ -17,24 +18,12 @@ class CounterButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _timer = context.watch<TimerStore>();
     final _gameMode = context.watch<GameStore>().game.mode;
     final _inPlay = context.select((GameStore store) => store.game.inPlay);
-    final onTap = () => {
-          if (_inPlay)
-            {context.read<GameStore>().incrementCount()}
-          else
-            {
-              context.read<GameStore>().inPlayToggle(),
-              // _timer.startTimer(_gameTime)
-            }
+    final onTap = (String value) => {
+          context.read<GameStore>().checkSelectedText(value),
+          context.read<TimerStore>().endTimer(_inPlay)
         };
-
-    final textList = {
-      "1-30": numbersList,
-      "a-z": lowerAlperbelList,
-      "A-Z": upperAlperbelList
-    };
 
     return Container(
       height: this.height,
@@ -45,10 +34,10 @@ class CounterButtons extends StatelessWidget {
           alignment: WrapAlignment.center,
           children: shuffleList(textList[_gameMode])
               .map(
-                (key) => Button(
-                  text: key,
+                (value) => Button(
+                  text: value,
                   selected: true,
-                  onTap: onTap,
+                  onTap: (value) => onTap(value),
                   height: this.height / coefficient,
                   width: this.width / coefficient,
                 ),
