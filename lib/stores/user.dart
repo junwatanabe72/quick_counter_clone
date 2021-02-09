@@ -69,62 +69,39 @@ class UserStore extends ChangeNotifier {
     return;
   }
 
-  List<User> sortUsers(String gameMode) {
-    final targetUsers = [...users];
-
-    List<User> cutUsers(List<User> baseUsers) {
-      const number = 10;
-      if (baseUsers.length > number) {
-        final cutUser = [...baseUsers]..removeRange(number, baseUsers.length);
-        return cutUser;
-      }
-      return baseUsers;
-    }
-
-    switch (gameMode) {
-      case "10S":
-        targetUsers.sort((a, b) => b.first.compareTo(a.first));
-        return cutUsers(targetUsers);
-        break;
-      case "60S":
-        targetUsers.sort((a, b) => b.second.compareTo(a.second));
-        return cutUsers(targetUsers);
-        break;
-      default:
-        targetUsers.sort((a, b) => b.third.compareTo(a.third));
-        return cutUsers(targetUsers);
-        break;
-    }
-  }
-
   void updateUser(User user) async {
     await UserDatabase.db.updateUser(user);
     fetchUser(user.name);
     fetchUsers();
   }
 
-  updateUserScore(String mode, int count, bool timeUp) {
+  selectUpdateUserData(int currentNumber, int newNumber) {
+    if (currentNumber == 0) {
+      return newNumber;
+    }
+    if (currentNumber > newNumber) {
+      return newNumber;
+    }
+    return currentNumber;
+  }
+
+  updateUserScore(String mode, int timeCount, bool isClear) {
+    print(timeCount);
+    if (!isClear) {
+      return;
+    }
     switch (mode) {
-      case "10S":
-        if (!timeUp) {
-          return;
-        }
-        _user.first = _user.first > count ? _user.first : count;
+      case "1-30":
+        _user.first = selectUpdateUserData(_user.first, timeCount);
         updateUser(_user);
         break;
-      case "60S":
-        if (!timeUp) {
-          return;
-        }
-        _user.second = _user.second > count ? _user.second : count;
+      case "A-Z":
+        _user.second = selectUpdateUserData(_user.second, timeCount);
         updateUser(_user);
 
         break;
       default:
-        if (count == 0) {
-          return;
-        }
-        _user.third = count;
+        _user.third = selectUpdateUserData(_user.third, timeCount);
         updateUser(_user);
         break;
     }

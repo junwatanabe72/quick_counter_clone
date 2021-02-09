@@ -4,28 +4,27 @@ import 'package:quick_counter_clone/components/atoms/Button.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 
-const length = 16;
-const fill = "";
+const coefficient = 5.7;
 
 class CounterButtons extends StatelessWidget {
+  final List<String> list;
   final double height;
   final double width;
-  CounterButtons({this.height, this.width});
+  final bool inPlay;
+  final bool isClear;
+  CounterButtons(
+      {this.list, this.isClear, this.inPlay, this.height, this.width});
 
   @override
   Widget build(BuildContext context) {
-    final _timer = context.watch<TimerStore>();
-    final _gameTime = context.watch<GameStore>().game.time;
-    final _inPlay = context.select((GameStore store) => store.game.inPlay);
-    final onTap = () => {
-          if (_inPlay)
-            {context.read<GameStore>().incrementCount()}
-          else
-            {
-              context.read<GameStore>().inPlayToggle(),
-              _timer.startTimer(_gameTime)
-            }
-        };
+    final onTap = (String value) {
+      if (context.read<GameStore>().game.inPlay) {
+        context.read<GameStore>().checkSelectedText(value);
+        context
+            .read<TimerStore>()
+            .endTimer(context.read<GameStore>().game.inPlay);
+      }
+    };
 
     return Container(
       height: this.height,
@@ -34,14 +33,15 @@ class CounterButtons extends StatelessWidget {
           spacing: 5.0,
           runSpacing: 5.0,
           alignment: WrapAlignment.center,
-          children: List<String>.filled(length, fill, growable: true)
+          children: this
+              .list
               .map(
-                (key) => Button(
-                  text: "",
-                  selected: true,
-                  onTap: onTap,
-                  height: this.height / 4.3,
-                  width: this.width / 4.3,
+                (String value) => Button(
+                  text: value,
+                  selected: [inPlay, isClear].contains(true),
+                  onTap: () => onTap(value),
+                  height: this.height / coefficient,
+                  width: this.width / coefficient,
                 ),
               )
               .toList()),
