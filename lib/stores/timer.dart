@@ -9,26 +9,31 @@ class TimerStore with ChangeNotifier {
   Timer _timer;
   static const ms = const Duration(milliseconds: 10);
 
-  startTimer(int status) {
+  startTimer() {
     if (_timer != null) {
       _timer.cancel();
     }
     _timer = Timer.periodic(ms, (timer) {
-      updateCounter(status);
+      updateCounter();
     });
     notifyListeners();
   }
 
-  void updateCounter(int status) {
-    if (status - 1 == _timeCount) {
-      endTimer();
+  void updateCounter() {
+    if (_timeUp) {
+      _timeUp = !_timeUp;
+      _timer.cancel();
       notifyListeners();
+      return;
     }
     _timeCount++;
     notifyListeners();
   }
 
-  void endTimer() {
+  void endTimer(bool inPlay) {
+    if (inPlay) {
+      return;
+    }
     _timeUp = !_timeUp;
     _timer.cancel();
     notifyListeners();

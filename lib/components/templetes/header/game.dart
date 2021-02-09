@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/components/atoms/statefullButton.dart';
-import 'package:renda_clone/components/organisims/game/timeCounter.dart';
-import 'package:renda_clone/stores/timer.dart';
-import 'package:renda_clone/stores/game.dart';
-import 'package:renda_clone/stores/user.dart';
+import 'package:quick_counter_clone/components/atoms/statefullButton.dart';
+import 'package:quick_counter_clone/components/organisims/game/timeCounter.dart';
+import 'package:quick_counter_clone/stores/timer.dart';
+import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/stores/user.dart';
 
 // StatelessWidgetを継承
 class Header extends StatelessWidget with PreferredSizeWidget {
@@ -28,8 +28,9 @@ class Header extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _count = context.select((GameStore store) => store.game.count);
     final _mode = context.select((GameStore store) => store.game.mode);
+    final _isClear = context.select((GameStore store) => store.game.isClear);
+    final _timeCount = context.select((TimerStore store) => store.timeCount);
     return Container(
         width: this.width,
         height: this.height,
@@ -44,7 +45,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                 onTap: () => {
                   context
                       .read<UserStore>()
-                      .updateUserScore(_mode, _count, this.timeUp),
+                      .updateUserScore(_mode, _timeCount, _isClear),
                   context.read<GameStore>().gameEnd(),
                   context.read<TimerStore>().resetCount(),
                   Navigator.pop(context)

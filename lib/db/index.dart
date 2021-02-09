@@ -1,8 +1,6 @@
 import 'dart:core';
-// import 'dart:io';
 import 'package:path/path.dart';
-import 'package:renda_clone/models/user.dart';
-// import 'package:renda_clone/models/users.dart';
+import 'package:quick_counter_clone/models/user.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 
@@ -44,8 +42,9 @@ class UserDatabase {
 
   Future<User> getUsersByName(String name) async {
     final db = await database;
-    var response =
-        await db.query("users", where: "name = ?", whereArgs: [name]);
+    var list =
+        await db.query("users", where: "name = ?", whereArgs: [name ?? ""]);
+    var response = list;
     return response.isNotEmpty ? User.fromMap(response.first) : null;
   }
 

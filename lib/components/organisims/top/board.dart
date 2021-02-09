@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/components/organisims/top/userTable.dart';
+import 'package:quick_counter_clone/components/organisims/top/userTable.dart';
 
 const title = "Leaderboard";
 

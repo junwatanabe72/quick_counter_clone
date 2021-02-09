@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renda_clone/util/hook/soundPool.dart';
+import 'package:quick_counter_clone/util/hook/soundPool.dart';
 
 class Button extends StatelessWidget {
   final String text;
@@ -25,24 +25,24 @@ class Button extends StatelessWidget {
         SoundPool.hitSound();
         this.onTap();
       },
-      // onTap: onTap,
       child: Container(
           width: this.width,
           height: this.height,
           decoration: BoxDecoration(
               color: selected
-                  ? this.color.withOpacity(0.2)
-                  : this.color.withOpacity(0.1),
+                  ? this.color.withOpacity(0.3)
+                  : this.color.withOpacity(0.2),
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                 color: selected
                     ? this.color.withOpacity(0.5)
-                    : this.color.withOpacity(0.1),
+                    : this.color.withOpacity(0.4),
                 width: 2.0,
               )),
           child: Center(
               child: Text(this.text,
                   style: TextStyle(
+                    fontSize: 20,
                     color: this.fontColor,
                   )))),
     );

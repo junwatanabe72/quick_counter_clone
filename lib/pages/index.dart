@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/components/atoms/space.dart';
-import 'package:renda_clone/components/organisims/top/title.dart';
-import 'package:renda_clone/components/organisims/top/topPageButton.dart';
-import 'package:renda_clone/components/organisims/top/userName.dart';
-import 'package:renda_clone/components/templetes/backgroundImage.dart';
-import 'package:renda_clone/components/templetes/footer/top.dart';
-import 'package:renda_clone/stores/game.dart';
-import 'package:renda_clone/stores/user.dart';
+import 'package:quick_counter_clone/components/atoms/space.dart';
+import 'package:quick_counter_clone/components/organisims/top/title.dart';
+import 'package:quick_counter_clone/components/organisims/top/topPageButton.dart';
+import 'package:quick_counter_clone/components/organisims/top/userName.dart';
+import 'package:quick_counter_clone/components/templetes/backgroundImage.dart';
+import 'package:quick_counter_clone/components/templetes/footer/top.dart';
+import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/stores/user.dart';
 import "../components/templetes/header/top.dart";
 
 class Top extends StatelessWidget {
@@ -17,8 +17,8 @@ class Top extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _user = context.select((UserStore store) => store.user);
-    final _createUser = context.read<UserStore>().createUser;
-    final _changeGameMode = context.read<GameStore>().changeGameMode;
+    final _createUser = context.watch<UserStore>().createUser;
+    final _changeGameMode = context.watch<GameStore>().changeGameMode;
     final size = MediaQuery.of(context).size;
     final padding = MediaQuery.of(context).padding;
     var maxHeight = size.height - padding.top - padding.bottom;
@@ -57,7 +57,7 @@ class Top extends StatelessWidget {
             AppTitle(
               width: titleWidth,
               height: titleHeight,
-              title: ["Renda", "Machine"],
+              title: ["Quick", "Contre"],
             ),
             UserName(
               width: userNameWidth,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/components/atoms/Button.dart';
-import 'package:renda_clone/stores/game.dart';
-import 'package:renda_clone/util/var/index.dart';
+import 'package:quick_counter_clone/components/atoms/Button.dart';
+import 'package:quick_counter_clone/stores/game.dart';
+import 'package:quick_counter_clone/util/var/index.dart';
 
 class SelectButtons extends StatelessWidget {
   final Function changeGameMode;

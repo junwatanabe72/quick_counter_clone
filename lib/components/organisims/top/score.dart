@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:renda_clone/stores/user.dart';
+import 'package:quick_counter_clone/stores/user.dart';
+import 'package:quick_counter_clone/util/hook/changeIntegerToString.dart';
 
 class Score extends StatelessWidget {
   final String mode;
@@ -24,7 +25,8 @@ class Score extends StatelessWidget {
   }
 
   Widget switchScore(String mode) {
-    final scoreText = (number) => number == null ? "---" : number.toString();
+    final scoreText =
+        (number) => number == 0 ? "---" : "${changeIntegerToString(number)}s";
     final textWidget = (int num) => Text(scoreText(num),
         style: TextStyle(
           fontWeight: FontWeight.normal,
@@ -32,13 +34,13 @@ class Score extends StatelessWidget {
           height: 1.0,
         ));
     switch (mode) {
-      case "10S":
+      case "1-30":
         return Selector<UserStore, int>(
           selector: (context, userStore) => userStore.user?.first,
           builder: (context, user, child) => textWidget(user),
         );
         break;
-      case "60S":
+      case "A-Z":
         return Selector<UserStore, int>(
           selector: (context, userStore) => userStore.user?.second,
           builder: (context, user, child) => textWidget(user),
