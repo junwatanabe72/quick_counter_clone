@@ -4,7 +4,7 @@ import 'package:quick_counter_clone/components/atoms/Button.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 
-const coefficient = 6.2;
+const coefficient = 5.7;
 
 class CounterButtons extends StatelessWidget {
   final List<String> list;

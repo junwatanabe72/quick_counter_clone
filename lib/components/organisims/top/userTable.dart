@@ -4,14 +4,15 @@ import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/stores/user.dart';
 import 'package:quick_counter_clone/util/hook/changeIntegerToString.dart';
 import 'package:quick_counter_clone/util/hook/map.dart';
+import 'package:quick_counter_clone/util/hook/sortUser.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 
 class UserTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _mode = Provider.of<GameStore>(context).game.mode;
+    final _mode = context.watch<GameStore>().game.mode;
     return Selector<UserStore, List<User>>(
-        selector: (context, userStore) => userStore.sortUsers(_mode),
+        selector: (context, userStore) => sortUsers(userStore.users, _mode),
         builder: (context, users, child) => Column(children: [
               ...users.indexedMap((index, user) => Align(
                   alignment: Alignment.topLeft,

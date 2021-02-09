@@ -21,12 +21,6 @@ void main() async {
     ChangeNotifierProvider<GameStore>(
       create: (context) => GameStore(),
     ),
-    // ChangeNotifierProxyProvider<GameStore, TimerStore>(
-    //   create: (BuildContext context) => TimerStore(),
-    //   update:
-    //       (BuildContext context, GameStore gameStore, TimerStore timerStore) =>
-    //           TimerStore(timeUp: gameStore.game.inPlay),
-    // ),
     ChangeNotifierProvider<TimerStore>(
       create: (context) => TimerStore(),
     )
@@ -50,12 +44,7 @@ class MyApp extends StatelessWidget {
                 bodyText2: TextStyle(
                     fontFamily: 'OpenSans',
                     fontWeight: FontWeight.bold,
-                    fontSize: 12)
-
-                // textTheme: TextTheme(
-                // bodyText1: TextStyle(),
-                // bodyText2: TextStyle(),
-                )
+                    fontSize: 12))
             .apply(
               bodyColor: Colors.white,
             ),

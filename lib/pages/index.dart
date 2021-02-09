@@ -18,7 +18,6 @@ class Top extends StatelessWidget {
   Widget build(BuildContext context) {
     final _user = context.select((UserStore store) => store.user);
     final _createUser = context.watch<UserStore>().createUser;
-    // final _createUser = context.read<UserStore>().createUser;
     final _changeGameMode = context.watch<GameStore>().changeGameMode;
     final size = MediaQuery.of(context).size;
     final padding = MediaQuery.of(context).padding;
