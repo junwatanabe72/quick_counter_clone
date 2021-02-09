@@ -26,7 +26,7 @@ class GameStore extends ChangeNotifier {
   }
 
   checkSelectedText(String value) {
-    final currentText = textList[_game.mode];
+    final currentText = baseTextList[_game.mode];
     if (currentText[_game.count] != value) {
       toggleInPlay();
     }

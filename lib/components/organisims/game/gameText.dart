@@ -20,7 +20,7 @@ class GameText extends StatelessWidget {
                 selector: (context, game) => game.game.count,
                 builder: (context, count, child) => Container(
                     alignment: Alignment.center,
-                    child: Text(textList[_gameMode][count],
+                    child: Text(baseTextList[_gameMode][count],
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 40,

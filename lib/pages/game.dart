@@ -8,9 +8,7 @@ import 'package:quick_counter_clone/components/templetes/backgroundImage.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 import 'package:quick_counter_clone/util/var/index.dart';
-// import 'package:quick_counter_clone/stores/user.dart';
 import "../components/templetes/header/game.dart";
-import 'package:quick_counter_clone/util/hook/gameModeList.dart';
 
 class Game extends StatelessWidget {
   static const routeName = "/game";
@@ -38,7 +36,6 @@ class Game extends StatelessWidget {
     final comHeight = maxHeight * (8 / 100);
 
     final gameWidth = size.width / 1.05;
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: BackgroundImage(
@@ -53,7 +50,7 @@ class Game extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: GameText(inPlay: _inPlay)),
             CounterButtons(
-                list: shuffleList(textList[_gameMode]),
+                list: textList[_gameMode],
                 width: gameWidth,
                 height: buttonsHeight),
             Space(

@@ -25,7 +25,6 @@ class Button extends StatelessWidget {
         SoundPool.hitSound();
         this.onTap();
       },
-      // onTap: onTap,
       child: Container(
           width: this.width,
           height: this.height,

@@ -24,6 +24,12 @@ final initalCounters = {
 };
 
 final textList = {
+  "1-30": shuffleList(numbersList),
+  "a-z": shuffleList(lowerAlperbelList),
+  "A-Z": shuffleList(upperAlperbelList)
+};
+
+final baseTextList = {
   "1-30": numbersList,
   "a-z": lowerAlperbelList,
   "A-Z": upperAlperbelList
