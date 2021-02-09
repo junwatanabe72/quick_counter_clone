@@ -40,7 +40,7 @@ class Score extends StatelessWidget {
           builder: (context, user, child) => textWidget(user),
         );
         break;
-      case "a-z":
+      case "A-Z":
         return Selector<UserStore, int>(
           selector: (context, userStore) => userStore.user?.second,
           builder: (context, user, child) => textWidget(user),

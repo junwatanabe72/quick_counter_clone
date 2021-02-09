@@ -21,14 +21,14 @@ class UserTable extends StatelessWidget {
 
   Widget switchMode(User user, String mode, int index) {
     switch (mode) {
-      case "10S":
+      case "1-30":
         return Text(
             "${index + 1}.${user.name}: ${changeIntegerToString(user.first)}s",
             style: TextStyle(
               height: 1.0,
             ));
         break;
-      case "60S":
+      case "A-Z":
         return Text(
             "${index + 1}.${user.name}: ${changeIntegerToString(user.second)}s",
             style: TextStyle(

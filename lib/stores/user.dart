@@ -83,16 +83,23 @@ class UserStore extends ChangeNotifier {
 
     switch (gameMode) {
       case "1-30":
-        targetUsers.sort((a, b) => b.first.compareTo(a.first));
-        return cutUsers(targetUsers);
+        final excluededNewUsers =
+            targetUsers.where((user) => user.first != 0).toList();
+        excluededNewUsers.sort((a, b) => b.first.compareTo(a.first));
+        return cutUsers(excluededNewUsers);
         break;
       case "A-Z":
-        targetUsers.sort((a, b) => b.second.compareTo(a.second));
-        return cutUsers(targetUsers);
+        final excluededNewUsers =
+            targetUsers.where((user) => user.second != 0).toList();
+        excluededNewUsers.sort((a, b) => b.second.compareTo(a.second));
+        return cutUsers(excluededNewUsers);
         break;
       default:
-        targetUsers.sort((a, b) => b.third.compareTo(a.third));
-        return cutUsers(targetUsers);
+        final excluededNewUsers =
+            targetUsers.where((user) => user.third != 0).toList();
+        excluededNewUsers.sort((a, b) => b.third.compareTo(a.third));
+        return cutUsers(excluededNewUsers);
+
         break;
     }
   }
@@ -110,16 +117,16 @@ class UserStore extends ChangeNotifier {
     }
     switch (mode) {
       case "1-30":
-        _user.first = _user.first > timeCount ? _user.first : timeCount;
+        _user.first = _user.first > timeCount ? timeCount : _user.first;
         updateUser(_user);
         break;
       case "A-Z":
-        _user.second = _user.second > timeCount ? _user.second : timeCount;
+        _user.second = _user.second > timeCount ? timeCount : _user.second;
         updateUser(_user);
 
         break;
       default:
-        _user.third = _user.third > timeCount ? _user.third : timeCount;
+        _user.third = _user.third > timeCount ? timeCount : _user.third;
         updateUser(_user);
         break;
     }
