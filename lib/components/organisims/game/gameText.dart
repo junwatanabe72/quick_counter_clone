@@ -30,7 +30,7 @@ class GameText extends StatelessWidget {
             : Text(gameText,
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
-                  fontSize: 40,
+                  fontSize: 36,
                   height: 1.0,
                 )));
   }

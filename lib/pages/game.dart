@@ -36,6 +36,7 @@ class Game extends StatelessWidget {
     final comHeight = maxHeight * (8 / 100);
 
     final gameWidth = size.width / 1.05;
+    final buttonWidth = size.width / 1.00;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: BackgroundImage(
@@ -53,7 +54,7 @@ class Game extends StatelessWidget {
                 list: textList[_gameMode],
                 inPlay: _inPlay,
                 isClear: _isClear,
-                width: gameWidth,
+                width: buttonWidth,
                 height: buttonsHeight),
             Space(
               height: comHeight,

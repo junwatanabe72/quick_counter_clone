@@ -4,7 +4,8 @@ import 'package:quick_counter_clone/components/atoms/Button.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 
-const coefficient = 5.7;
+const widthCoefficient = 5.8;
+const heightCoefficient = 6.5;
 
 class CounterButtons extends StatelessWidget {
   final List<String> list;
@@ -40,8 +41,8 @@ class CounterButtons extends StatelessWidget {
                   text: value,
                   selected: [inPlay, isClear].contains(true),
                   onTap: () => onTap(value),
-                  height: this.height / coefficient,
-                  width: this.width / coefficient,
+                  height: this.height / heightCoefficient,
+                  width: this.width / widthCoefficient,
                 ),
               )
               .toList()),

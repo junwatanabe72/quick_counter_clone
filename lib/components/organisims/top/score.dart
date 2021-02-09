@@ -25,8 +25,9 @@ class Score extends StatelessWidget {
   }
 
   Widget switchScore(String mode) {
-    final scoreText =
-        (number) => number == 0 ? "---" : "${changeIntegerToString(number)}s";
+    final scoreText = (number) => number == 0 || number == null
+        ? "---"
+        : "${changeIntegerToString(number)}s";
     final textWidget = (int num) => Text(scoreText(num),
         style: TextStyle(
           fontWeight: FontWeight.normal,
