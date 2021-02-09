@@ -21,6 +21,12 @@ void main() async {
     ChangeNotifierProvider<GameStore>(
       create: (context) => GameStore(),
     ),
+    // ChangeNotifierProxyProvider<GameStore, TimerStore>(
+    //   create: (BuildContext context) => TimerStore(),
+    //   update:
+    //       (BuildContext context, GameStore gameStore, TimerStore timerStore) =>
+    //           TimerStore(timeUp: gameStore.game.inPlay),
+    // ),
     ChangeNotifierProvider<TimerStore>(
       create: (context) => TimerStore(),
     )

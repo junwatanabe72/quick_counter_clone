@@ -31,12 +31,12 @@ class Button extends StatelessWidget {
           decoration: BoxDecoration(
               color: selected
                   ? this.color.withOpacity(0.3)
-                  : this.color.withOpacity(0.1),
+                  : this.color.withOpacity(0.2),
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                 color: selected
                     ? this.color.withOpacity(0.5)
-                    : this.color.withOpacity(0.1),
+                    : this.color.withOpacity(0.4),
                 width: 2.0,
               )),
           child: Center(

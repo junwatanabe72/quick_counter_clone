@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/stores/user.dart';
+import 'package:quick_counter_clone/util/hook/changeIntegerToString.dart';
 import 'package:quick_counter_clone/util/hook/map.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 
@@ -21,20 +22,23 @@ class UserTable extends StatelessWidget {
   Widget switchMode(User user, String mode, int index) {
     switch (mode) {
       case "10S":
-        return Text("${index + 1}.${user.name}: ${user.first.toString()}s",
+        return Text(
+            "${index + 1}.${user.name}: ${changeIntegerToString(user.first)}s",
             style: TextStyle(
               height: 1.0,
             ));
         break;
       case "60S":
-        return Text("${index + 1}.${user.name}: ${user.second.toString()}s",
+        return Text(
+            "${index + 1}.${user.name}: ${changeIntegerToString(user.second)}s",
             style: TextStyle(
               height: 1.0,
             ));
 
         break;
       default:
-        return Text("${index + 1}.${user.name}: ${user.third.toString()}s",
+        return Text(
+            "${index + 1}.${user.name}: ${changeIntegerToString(user.third)}s",
             style: TextStyle(
               height: 1.0,
             ));

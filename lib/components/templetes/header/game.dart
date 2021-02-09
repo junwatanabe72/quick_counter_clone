@@ -28,8 +28,9 @@ class Header extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _count = context.select((GameStore store) => store.game.count);
     final _mode = context.select((GameStore store) => store.game.mode);
+    final _isClear = context.select((GameStore store) => store.game.isClear);
+    final _timeCount = context.select((TimerStore store) => store.timeCount);
     return Container(
         width: this.width,
         height: this.height,
@@ -44,7 +45,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                 onTap: () => {
                   context
                       .read<UserStore>()
-                      .updateUserScore(_mode, _count, this.timeUp),
+                      .updateUserScore(_mode, _timeCount, _isClear),
                   context.read<GameStore>().gameEnd(),
                   context.read<TimerStore>().resetCount(),
                   Navigator.pop(context)

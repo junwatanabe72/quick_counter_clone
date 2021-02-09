@@ -3,19 +3,21 @@ import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/util/var/index.dart';
 
-const leadTextA = "Press any button";
-const leadTextB = "to start";
+const loseText = "GAME OVER";
+const winText = "CONGRATULATIONS";
 
 class GameText extends StatelessWidget {
   final bool inPlay;
-  GameText({@required this.inPlay});
+  final bool isClear;
+  GameText({@required this.inPlay, @required this.isClear});
 
   @override
   Widget build(BuildContext context) {
     final _gameMode = context.watch<GameStore>().game.mode;
+    final gameText = this.isClear ? winText : loseText;
     return Container(
         alignment: Alignment.center,
-        child: inPlay
+        child: this.inPlay
             ? Selector<GameStore, int>(
                 selector: (context, game) => game.game.count,
                 builder: (context, count, child) => Container(
@@ -25,22 +27,11 @@ class GameText extends StatelessWidget {
                           fontWeight: FontWeight.normal,
                           fontSize: 40,
                         ))))
-            : Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                    const Text(leadTextA,
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 40,
-                          height: 1.0,
-                        )),
-                    const Text(leadTextB,
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 40,
-                          height: 1.0,
-                        ))
-                  ]));
+            : Text(gameText,
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 40,
+                  height: 1.0,
+                )));
   }
 }

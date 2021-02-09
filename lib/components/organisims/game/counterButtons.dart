@@ -10,16 +10,22 @@ class CounterButtons extends StatelessWidget {
   final List<String> list;
   final double height;
   final double width;
-  CounterButtons({this.list, this.height, this.width});
+  final bool inPlay;
+  final bool isClear;
+  CounterButtons(
+      {this.list, this.isClear, this.inPlay, this.height, this.width});
 
   @override
   Widget build(BuildContext context) {
-    final _inPlay = context.select((GameStore store) => store.game.inPlay);
-    final onTap = (String value) => {
-          context.read<GameStore>().checkSelectedText(value),
-          context.read<TimerStore>().endTimer(_inPlay),
-        };
-    print("dd");
+    final onTap = (String value) {
+      if (context.read<GameStore>().game.inPlay) {
+        context.read<GameStore>().checkSelectedText(value);
+        context
+            .read<TimerStore>()
+            .endTimer(context.read<GameStore>().game.inPlay);
+      }
+    };
+
     return Container(
       height: this.height,
       width: this.width,
@@ -32,7 +38,7 @@ class CounterButtons extends StatelessWidget {
               .map(
                 (String value) => Button(
                   text: value,
-                  selected: true,
+                  selected: [inPlay, isClear].contains(true),
                   onTap: () => onTap(value),
                   height: this.height / coefficient,
                   width: this.width / coefficient,

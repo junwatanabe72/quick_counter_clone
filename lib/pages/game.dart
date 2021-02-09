@@ -14,8 +14,8 @@ class Game extends StatelessWidget {
   static const routeName = "/game";
   @override
   Widget build(BuildContext context) {
-    // Provider.of<UserStore>(context);
     final _inPlay = context.select((GameStore store) => store.game.inPlay);
+    final _isClear = context.select((GameStore store) => store.game.isClear);
     final _gameMode = context.watch<GameStore>().game.mode;
     final _timerUp = context.select((TimerStore store) => store.timeUp);
     final size = MediaQuery.of(context).size;
@@ -48,9 +48,11 @@ class Game extends StatelessWidget {
             Container(
                 height: textHeight,
                 alignment: Alignment.bottomCenter,
-                child: GameText(inPlay: _inPlay)),
+                child: GameText(inPlay: _inPlay, isClear: _isClear)),
             CounterButtons(
                 list: textList[_gameMode],
+                inPlay: _inPlay,
+                isClear: _isClear,
                 width: gameWidth,
                 height: buttonsHeight),
             Space(

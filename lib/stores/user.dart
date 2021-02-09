@@ -82,11 +82,11 @@ class UserStore extends ChangeNotifier {
     }
 
     switch (gameMode) {
-      case "10S":
+      case "1-30":
         targetUsers.sort((a, b) => b.first.compareTo(a.first));
         return cutUsers(targetUsers);
         break;
-      case "60S":
+      case "A-Z":
         targetUsers.sort((a, b) => b.second.compareTo(a.second));
         return cutUsers(targetUsers);
         break;
@@ -103,28 +103,23 @@ class UserStore extends ChangeNotifier {
     fetchUsers();
   }
 
-  updateUserScore(String mode, int count, bool timeUp) {
+  updateUserScore(String mode, int timeCount, bool isClear) {
+    print(timeCount);
+    if (!isClear) {
+      return;
+    }
     switch (mode) {
-      case "10S":
-        if (!timeUp) {
-          return;
-        }
-        _user.first = _user.first > count ? _user.first : count;
+      case "1-30":
+        _user.first = _user.first > timeCount ? _user.first : timeCount;
         updateUser(_user);
         break;
-      case "60S":
-        if (!timeUp) {
-          return;
-        }
-        _user.second = _user.second > count ? _user.second : count;
+      case "A-Z":
+        _user.second = _user.second > timeCount ? _user.second : timeCount;
         updateUser(_user);
 
         break;
       default:
-        if (count == 0) {
-          return;
-        }
-        _user.third = count;
+        _user.third = _user.third > timeCount ? _user.third : timeCount;
         updateUser(_user);
         break;
     }
