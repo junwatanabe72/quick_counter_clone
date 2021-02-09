@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 import 'package:quick_counter_clone/util/hook/changeIntegerToString.dart';
 
@@ -14,7 +13,6 @@ class TimeCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _mode = context.select((GameStore store) => store.game.mode);
     final _timeCount = context.select((TimerStore store) => store.timeCount);
     return Container(
         width: width / 2.1,
