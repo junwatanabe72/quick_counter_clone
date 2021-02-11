@@ -30,6 +30,10 @@ flutter:
     - images/universe.jpg
     - images/splash.png
     - assets/hit.mp3
+    - assets/attack.mp3
+    - assets/lose.mp3
+    - assets/success.mp3
+    - assets/play.mp3
   fonts:
     - family: OpenSans
       fonts:

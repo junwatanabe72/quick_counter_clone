@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quick_counter_clone/models/game.dart';
+import 'package:quick_counter_clone/util/hook/soundPool.dart';
 import 'package:quick_counter_clone/util/var/index.dart';
 
 class GameStore extends ChangeNotifier {
@@ -22,6 +23,7 @@ class GameStore extends ChangeNotifier {
 
   incrementCount() async {
     _game.count += 1;
+    SoundPool.hitSound("assets/attack.mp3");
     notifyListeners();
   }
 
@@ -32,10 +34,14 @@ class GameStore extends ChangeNotifier {
 
     if (currentText[_game.count] != value) {
       toggleInPlay();
+      SoundPool.hitSound("assets/lose.mp3");
+      return;
     }
     if (currentText[_game.count] == currentText[testMode]) {
       toggleInPlay();
       toggleIsClear();
+      SoundPool.hitSound("assets/success.mp3");
+      return;
     }
     incrementCount();
   }

@@ -3,6 +3,7 @@ import 'package:quick_counter_clone/util/hook/soundPool.dart';
 
 class Button extends StatelessWidget {
   final String text;
+  final String soundPath;
   final bool selected;
   final double width;
   final double height;
@@ -11,6 +12,7 @@ class Button extends StatelessWidget {
   final Color fontColor;
   Button(
       {this.text = "",
+      this.soundPath = "",
       this.fontColor = Colors.white,
       this.color = Colors.red,
       @required this.onTap,
@@ -22,7 +24,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        SoundPool.hitSound();
+        SoundPool.hitSound(this.soundPath);
         this.onTap();
       },
       child: Container(

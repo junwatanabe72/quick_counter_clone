@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/util/var/index.dart';
 
-const loseText = "GAME OVER";
-const winText = "CONGRATULATIONS";
+const loseText = "GAME OVER!";
+const winText = "CONGRATULATIONS!";
 
 class GameText extends StatelessWidget {
   final bool inPlay;

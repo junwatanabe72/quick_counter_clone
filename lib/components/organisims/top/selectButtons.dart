@@ -21,6 +21,7 @@ class SelectButtons extends StatelessWidget {
           children: gameModes.keys
               .map((key) => Button(
                   text: gameModes[key],
+                  soundPath: "assets/hit.mp3",
                   selected: gameModes[key] == _mode,
                   onTap: () => {this.changeGameMode(key)},
                   width: this.width / 3.2))

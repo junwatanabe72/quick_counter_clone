@@ -3,9 +3,11 @@ import 'package:quick_counter_clone/util/hook/soundPool.dart';
 
 class StatefullButton extends StatefulWidget {
   final String text;
+  final String soundPath;
   final double width;
   final Function onTap;
-  StatefullButton({this.text = "", @required this.onTap, this.width});
+  StatefullButton(
+      {this.text = "", this.soundPath = "", @required this.onTap, this.width});
 
   @override
   _StatefullButtonState createState() => _StatefullButtonState();
@@ -23,7 +25,7 @@ class _StatefullButtonState extends State<StatefullButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
-          SoundPool.hitSound();
+          SoundPool.hitSound(widget.soundPath);
           widget.onTap();
         },
         onTapUp: (TapUpDetails tapUpDetails) => {_handleTap()},

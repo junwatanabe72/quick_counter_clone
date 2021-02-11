@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/components/atoms/statefullButton.dart';
 import 'package:quick_counter_clone/components/organisims/top/selectButtons.dart';
-// import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/pages/game.dart';
-// import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 
@@ -30,6 +28,7 @@ class TopPageButtons extends StatelessWidget {
           width: this.width,
           height: this.height,
           child: StatefullButton(
+              soundPath: "assets/play.mp3",
               text: "PLAY!",
               onTap: () async {
                 context.read<GameStore>().toggleInPlay();
