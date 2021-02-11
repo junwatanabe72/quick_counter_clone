@@ -5,9 +5,17 @@ import 'package:quick_counter_clone/stores/game.dart';
 
 const title = "Leaderboard";
 
-class Board extends StatelessWidget {
+class Board extends StatefulWidget {
+  @override
+  _BoardState createState() => _BoardState();
+}
+
+class _BoardState extends State<Board> {
+  bool testBool = true;
+
   @override
   Widget build(BuildContext context) {
+    print(testBool);
     final _mode = context.watch<GameStore>().game.mode;
     return Container(
       padding: const EdgeInsets.all(10),
@@ -20,12 +28,18 @@ class Board extends StatelessWidget {
             width: 2.0,
           )),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text(title,
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 20,
-              height: 1.0,
-            )),
+        GestureDetector(
+            onTap: () {
+              setState(() {
+                testBool = !testBool;
+              });
+            },
+            child: const Text(title,
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 20,
+                  height: 1.0,
+                ))),
         UserTable(mode: _mode),
       ]),
     );

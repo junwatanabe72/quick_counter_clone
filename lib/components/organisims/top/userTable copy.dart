@@ -4,26 +4,14 @@ import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:quick_counter_clone/util/hook/changeIntegerToString.dart';
 import "package:quick_counter_clone/util/hook/map.dart";
 
-class UserTable extends StatefulWidget {
+class UserTable extends StatelessWidget {
   final String mode;
   UserTable({this.mode});
-  @override
-  _UserTableState createState() => _UserTableState();
-}
-
-class _UserTableState extends State<UserTable> {
-  Future<List<User>> _gameTextList;
-  @override
-  void initState() {
-    super.initState();
-    _gameTextList = getUsers(widget.mode);
-  }
 
   @override
   Widget build(BuildContext context) {
-    print("test");
     return FutureBuilder(
-        future: _gameTextList,
+        future: getUsers(this.mode),
         builder: (context, AsyncSnapshot<List<User>> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data.length == 0) {
@@ -32,7 +20,7 @@ class _UserTableState extends State<UserTable> {
             return Column(children: [
               ...snapshot.data.indexedMap((index, user) => Align(
                   alignment: Alignment.topLeft,
-                  child: switchMode(user, widget.mode, index)))
+                  child: switchMode(user, this.mode, index)))
             ]);
           } else {
             return Text("");
