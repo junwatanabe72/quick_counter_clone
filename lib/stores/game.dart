@@ -27,17 +27,16 @@ class GameStore extends ChangeNotifier {
 
   checkSelectedText(String value) {
     final currentText = baseTextList[_game.mode];
+    final baseEndPoint = currentText.length - 1;
+    final testMode = test ? testEndPoint : baseEndPoint;
+
     if (currentText[_game.count] != value) {
       toggleInPlay();
     }
-    if (value == "B" || value == "2" || value == "b") {
+    if (currentText[_game.count] == currentText[testMode]) {
       toggleInPlay();
       toggleIsClear();
     }
-    // if (currentText[_game.count] == currentText.last) {
-    //   toggleInPlay();
-    //   toggleIsClear();
-    // }
     incrementCount();
   }
 
