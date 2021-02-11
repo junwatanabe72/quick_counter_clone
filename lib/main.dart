@@ -2,12 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-// import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 import 'package:quick_counter_clone/stores/user.dart';
 import 'package:quick_counter_clone/util/hook/initalData.dart';
-// import 'models/user.dart';
 import 'pages/game.dart';
 import 'pages/index.dart';
 
