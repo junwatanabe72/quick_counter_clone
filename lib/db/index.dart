@@ -35,7 +35,7 @@ class UserDatabase {
 
   Future<int> addToDatabase(User user) async {
     final db = await database;
-    var a = db.insert("users", user.toMap(),
+    var a = db.insert("users", user.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     return a;
   }
@@ -45,14 +45,14 @@ class UserDatabase {
     var list =
         await db.query("users", where: "name = ?", whereArgs: [name ?? ""]);
     var response = list;
-    return response.isNotEmpty ? User.fromMap(response.first) : null;
+    return response.isNotEmpty ? User.fromJson(response.first) : null;
   }
 
   Future<List<User>> getFullUsers() async {
     final db = await database;
     var response = await db.query("users");
     List<User> list = response.isNotEmpty
-        ? response.map((e) => User.fromMap(e)).toList()
+        ? response.map((e) => User.fromJson(e)).toList()
         : [];
     return list;
   }
@@ -64,7 +64,7 @@ class UserDatabase {
 
   Future<int> updateUser(User user) async {
     final db = await database;
-    var response = db.update('users', user.toMap(),
+    var response = db.update('users', user.toJson(),
         where: 'name = ?', whereArgs: [user.name]);
     return response;
   }

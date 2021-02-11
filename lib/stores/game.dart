@@ -6,7 +6,6 @@ import 'package:quick_counter_clone/util/var/index.dart';
 class GameStore extends ChangeNotifier {
   Game _game = Game(
       mode: gameModes[mode.first.toString()],
-      time: gameTimes[mode.first.toString()],
       isClear: false,
       inPlay: false,
       count: 0);
@@ -17,7 +16,6 @@ class GameStore extends ChangeNotifier {
       return;
     }
     _game.mode = gameModes[key];
-    _game.time = gameTimes[key];
     notifyListeners();
   }
 
