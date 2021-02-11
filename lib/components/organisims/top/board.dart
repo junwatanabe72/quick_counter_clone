@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/components/organisims/top/userTable.dart';
+import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 
 const title = "Leaderboard";
 
 class Board extends StatelessWidget {
+  final Future<List<dynamic>> users;
+  Board({this.users});
   @override
   Widget build(BuildContext context) {
     final _mode = context.watch<GameStore>().game.mode;
@@ -26,7 +29,7 @@ class Board extends StatelessWidget {
               fontSize: 20,
               height: 1.0,
             )),
-        UserTable(mode: _mode),
+        UserTable(users: this.users, mode: _mode),
       ]),
     );
   }

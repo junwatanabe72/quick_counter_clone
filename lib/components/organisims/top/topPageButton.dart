@@ -8,11 +8,12 @@ import 'package:quick_counter_clone/stores/timer.dart';
 
 class TopPageButtons extends StatelessWidget {
   final Function changeGameMode;
-
+  final Function function;
   final double height;
   final double width;
   TopPageButtons(
       {@required this.changeGameMode,
+      this.function,
       @required this.height,
       @required this.width});
 
@@ -20,6 +21,7 @@ class TopPageButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       SelectButtons(
+          function: this.function,
           changeGameMode: this.changeGameMode,
           width: this.width,
           height: this.height),

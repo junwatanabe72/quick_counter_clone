@@ -7,12 +7,40 @@ import 'package:quick_counter_clone/components/organisims/top/topPageButton.dart
 import 'package:quick_counter_clone/components/organisims/top/userName.dart';
 import 'package:quick_counter_clone/components/templetes/backgroundImage.dart';
 import 'package:quick_counter_clone/components/templetes/footer/top.dart';
+import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/user.dart';
 import "../components/templetes/header/top.dart";
 
-class Top extends StatelessWidget {
+class Top extends StatefulWidget {
   static const routeName = "/";
+
+  @override
+  _TopState createState() => _TopState();
+}
+
+class _TopState extends State<Top> {
+  Future<List<dynamic>> dbUsers;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      dbUsers = context
+          .read<UserStore>()
+          .fetchGlobalUser(context.read<GameStore>().game.mode);
+    });
+  }
+
+  void _changeDBUsers(String gameMode, Function callback) async {
+    setState(() async {
+      dbUsers = await callback(gameMode);
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +101,14 @@ class Top extends StatelessWidget {
                     changeGameMode: _changeGameMode,
                     width: buttonWidth,
                     height: buttonHeight,
+                    function: _changeDBUsers,
                   )
                 : Space(height: hiddenButtonHeight),
             Space(
               height: spaceHeight,
             ),
             Footer(
+              users: dbUsers,
               width: footerWidth,
               height: footerHeight,
             ),
