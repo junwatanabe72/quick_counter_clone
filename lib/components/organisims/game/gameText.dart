@@ -14,7 +14,7 @@ class GameText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _gameMode = context.watch<GameStore>().game.mode;
-    final gameText = this.isClear ? winText : loseText;
+    final _gameText = this.isClear ? winText : loseText;
     return Container(
         alignment: Alignment.center,
         child: this.inPlay
@@ -27,7 +27,7 @@ class GameText extends StatelessWidget {
                           fontWeight: FontWeight.normal,
                           fontSize: 40,
                         ))))
-            : Text(gameText,
+            : Text(_gameText,
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 36,

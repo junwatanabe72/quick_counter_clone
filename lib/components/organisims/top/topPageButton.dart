@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/components/atoms/statefullButton.dart';
 import 'package:quick_counter_clone/components/organisims/top/selectButtons.dart';
-import 'package:quick_counter_clone/models/user.dart';
+// import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/pages/game.dart';
+// import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/timer.dart';
 
 class TopPageButtons extends StatelessWidget {
   final Function changeGameMode;
-  final User user;
+
   final double height;
   final double width;
   TopPageButtons(
-      {this.user,
-      this.changeGameMode,
+      {@required this.changeGameMode,
       @required this.height,
       @required this.width});
 
@@ -31,11 +31,11 @@ class TopPageButtons extends StatelessWidget {
           height: this.height,
           child: StatefullButton(
               text: "PLAY!",
-              onTap: () => {
-                    context.read<GameStore>().toggleInPlay(),
-                    context.read<TimerStore>().startTimer(),
-                    Navigator.of(context).pushNamed(Game.routeName)
-                  }))
+              onTap: () async {
+                context.read<GameStore>().toggleInPlay();
+                context.read<TimerStore>().startTimer();
+                Navigator.of(context).pushNamed(Game.routeName);
+              }))
     ]);
   }
 }

@@ -8,7 +8,7 @@ class SelectButtons extends StatelessWidget {
   final Function changeGameMode;
   final double height;
   final double width;
-  SelectButtons({this.changeGameMode, this.height, this.width});
+  SelectButtons({@required this.changeGameMode, this.height, this.width});
 
   @override
   Widget build(BuildContext context) {

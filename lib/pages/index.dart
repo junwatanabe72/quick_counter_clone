@@ -73,7 +73,7 @@ class Top extends StatelessWidget {
                     changeGameMode: _changeGameMode,
                     width: buttonWidth,
                     height: buttonHeight,
-                    user: _user)
+                  )
                 : Space(height: hiddenButtonHeight),
             Space(
               height: spaceHeight,

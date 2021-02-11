@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quick_counter_clone/services/http/index.dart';
+// import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quick_counter_clone/db/index.dart';
 import 'package:quick_counter_clone/models/user.dart';
@@ -71,6 +73,7 @@ class UserStore extends ChangeNotifier {
 
   void updateUser(User user) async {
     await UserDatabase.db.updateUser(user);
+    await postUsers(user);
     fetchUser(user.name);
     fetchUsers();
   }

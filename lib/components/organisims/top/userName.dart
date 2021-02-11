@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quick_counter_clone/components/organisims/top/textField.dart';
-// import 'package:quick_counter_clone/components/atoms/input.dart';
 
 const hintText = 'Enter Nickname...';
 const submitText = "done";
@@ -13,7 +12,7 @@ class UserName extends StatefulWidget {
   final double width;
   UserName(
       {@required this.name,
-      this.createUser,
+      @required this.createUser,
       @required this.width,
       @required this.height,
       Key key})
@@ -49,7 +48,7 @@ class _UserNameState extends State<UserName> {
   Widget build(BuildContext context) {
     final Widget textWidget = _name != ""
         ? Text(_name, style: TextStyle(color: Colors.black))
-        : Text('Enter Nickname...', style: TextStyle(color: Colors.grey));
+        : Text(hintText, style: TextStyle(color: Colors.grey));
     Future<Null> _showDialog() async {
       await showDialog<String>(
           context: context,

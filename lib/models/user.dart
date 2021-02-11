@@ -12,6 +12,15 @@ class User {
         'second': second,
         'third': third
       };
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        id: json['id'] as int,
+        name: json['name'] as String ?? "",
+        first: json['first'] as int,
+        second: json['second'] as int,
+        third: json['third'] as int);
+  }
+
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
         id: map['id'],

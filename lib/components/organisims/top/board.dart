@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_counter_clone/components/organisims/top/userTable.dart';
+import 'package:quick_counter_clone/stores/game.dart';
 
 const title = "Leaderboard";
 
 class Board extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _mode = context.watch<GameStore>().game.mode;
     return Container(
       padding: const EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width / 2,
@@ -23,7 +26,7 @@ class Board extends StatelessWidget {
               fontSize: 20,
               height: 1.0,
             )),
-        UserTable(),
+        UserTable(mode: _mode),
       ]),
     );
   }

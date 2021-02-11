@@ -30,10 +30,14 @@ class GameStore extends ChangeNotifier {
     if (currentText[_game.count] != value) {
       toggleInPlay();
     }
-    if (currentText[_game.count] == currentText.last) {
+    if (value == "B" || value == "2" || value == "b") {
       toggleInPlay();
       toggleIsClear();
     }
+    // if (currentText[_game.count] == currentText.last) {
+    //   toggleInPlay();
+    //   toggleIsClear();
+    // }
     incrementCount();
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Roll extends StatelessWidget {
-  final rollWidgets = [
+  final _rollWidgets = [
     ["SOUND EFFECT:", "Hogehoge"],
     ["FONT:", "FugaLabo", "FugaProductions"],
     ["ICON:", "Hoge"],
@@ -27,7 +27,7 @@ class Roll extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [...rollWidgets],
+      children: [..._rollWidgets],
     );
   }
 }

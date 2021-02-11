@@ -17,10 +17,10 @@ class UserTextField extends StatelessWidget {
   UserTextField(
       {this.inputName,
       this.userName,
-      this.onChange,
-      this.closeDialog,
-      this.createUser,
-      this.controller});
+      @required this.onChange,
+      @required this.closeDialog,
+      @required this.createUser,
+      @required this.controller});
 
   @override
   Widget build(BuildContext context) {
