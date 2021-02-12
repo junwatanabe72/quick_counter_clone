@@ -13,17 +13,21 @@ class UserTable extends StatelessWidget {
     return FutureBuilder(
         future: getUsers(this.mode),
         builder: (context, AsyncSnapshot<List<User>> snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data.length == 0) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("");
+          } else {
+            if (snapshot.hasData) {
+              if (snapshot.data.length == 0) {
+                return Text("");
+              }
+              return Column(children: [
+                ...snapshot.data.indexedMap((index, user) => Align(
+                    alignment: Alignment.topLeft,
+                    child: switchMode(user, this.mode, index)))
+              ]);
+            } else {
               return Text("");
             }
-            return Column(children: [
-              ...snapshot.data.indexedMap((index, user) => Align(
-                  alignment: Alignment.topLeft,
-                  child: switchMode(user, this.mode, index)))
-            ]);
-          } else {
-            return Text("");
           }
         });
   }

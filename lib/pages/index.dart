@@ -57,7 +57,7 @@ class Top extends StatelessWidget {
             AppTitle(
               width: titleWidth,
               height: titleHeight,
-              title: ["Quick", "Contre"],
+              title: ["Quick", "Countre"],
             ),
             UserName(
               width: userNameWidth,
