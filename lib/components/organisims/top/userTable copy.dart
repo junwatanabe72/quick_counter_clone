@@ -22,25 +22,18 @@ class UserTable extends StatelessWidget {
             return CircularProgressIndicator();
           } else {
             print(snapShot.data);
-            final numbersList =
-                new List.generate(snapShot.data.length - 1, (i) => i);
             return ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               children: [
-                ...numbersList.map((int num) {
-                  if (snapShot.data.length < num) {
-                    return Text("");
-                  }
-                  return Container(
-                      // height: 100,
-                      width: 150,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: switchMode(snapShot.data[num], this.mode, num),
-                      ));
-                  // switchMode(snapShot.data[1], this.mode),
-                })
+                Container(
+                    height: 100,
+                    width: 150,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: switchMode(snapShot.data[0], this.mode),
+                    ))
+                // switchMode(snapShot.data[1], this.mode),
               ],
             );
 
@@ -51,9 +44,9 @@ class UserTable extends StatelessWidget {
         });
   }
 
-  Widget switchMode(User user, String mode, int index) {
-    // print("gggg");
-    // final index = 1;
+  Widget switchMode(User user, String mode) {
+    print("gggg");
+    final index = 1;
     switch (mode) {
       case "1-30":
         return Text(

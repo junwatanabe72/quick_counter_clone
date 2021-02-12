@@ -7,7 +7,8 @@ import 'package:quick_counter_clone/stores/game.dart';
 const title = "Leaderboard";
 
 class Board extends StatelessWidget {
-  final Future<List<dynamic>> users;
+  // final Future<List<dynamic>> users;
+  final Stream<List<User>> users;
   Board({this.users});
   @override
   Widget build(BuildContext context) {

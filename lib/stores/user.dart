@@ -60,7 +60,7 @@ class UserStore extends ChangeNotifier {
     fetchUsers();
   }
 
-  Future<List<dynamic>> fetchGlobalUser(String mode) async {
+  Future<List<User>> fetchGlobalUser(String mode) async {
     final fetchedUser = await getUsers(mode);
     print("async");
     print(fetchedUser);

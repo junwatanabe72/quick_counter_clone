@@ -7,7 +7,7 @@ import 'package:quick_counter_clone/models/user.dart';
 class Footer extends StatelessWidget {
   final double width;
   final double height;
-  final Future<List<dynamic>> users;
+  final Stream<List<User>> users;
   Footer({this.users, this.width, this.height});
   @override
   Widget build(BuildContext context) {

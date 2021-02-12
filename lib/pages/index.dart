@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
@@ -20,25 +22,12 @@ class Top extends StatefulWidget {
 }
 
 class _TopState extends State<Top> {
-  Future<List<dynamic>> dbUsers;
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      dbUsers = context
-          .read<UserStore>()
-          .fetchGlobalUser(context.read<GameStore>().game.mode);
-    });
-  }
-
-  void _changeDBUsers(String gameMode, Function callback) async {
-    setState(() async {
-      dbUsers = await callback(gameMode);
-    });
-  }
+  final _dbUsers = StreamController<List<User>>();
 
   @override
   void dispose() {
+    // StreamControllerは必ず開放する
+    _dbUsers.close();
     super.dispose();
   }
 
@@ -101,14 +90,14 @@ class _TopState extends State<Top> {
                     changeGameMode: _changeGameMode,
                     width: buttonWidth,
                     height: buttonHeight,
-                    function: _changeDBUsers,
+                    sink: _dbUsers.sink,
                   )
                 : Space(height: hiddenButtonHeight),
             Space(
               height: spaceHeight,
             ),
             Footer(
-              users: dbUsers,
+              users: _dbUsers.stream,
               width: footerWidth,
               height: footerHeight,
             ),
