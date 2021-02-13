@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
@@ -7,12 +9,40 @@ import 'package:quick_counter_clone/components/organisims/top/topPageButton.dart
 import 'package:quick_counter_clone/components/organisims/top/userName.dart';
 import 'package:quick_counter_clone/components/templetes/backgroundImage.dart';
 import 'package:quick_counter_clone/components/templetes/footer/top.dart';
+import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/user.dart';
 import "../components/templetes/header/top.dart";
 
-class Top extends StatelessWidget {
+class Top extends StatefulWidget {
   static const routeName = "/";
+
+  @override
+  _TopState createState() => _TopState();
+}
+
+class _TopState extends State<Top> {
+  final _backEndDBUsersStream = StreamController<List<User>>();
+
+  void setBackEndInitialDBUsers() async {
+    final _mode = context.read<GameStore>().game.mode;
+    final select = await context.read<UserStore>().fetchGlobalUser(_mode);
+    _backEndDBUsersStream.sink.add(select);
+    // });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setBackEndInitialDBUsers();
+  }
+
+  @override
+  void dispose() {
+    // StreamControllerは必ず開放する
+    _backEndDBUsersStream.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +103,14 @@ class Top extends StatelessWidget {
                     changeGameMode: _changeGameMode,
                     width: buttonWidth,
                     height: buttonHeight,
+                    sink: _backEndDBUsersStream.sink,
                   )
                 : Space(height: hiddenButtonHeight),
             Space(
               height: spaceHeight,
             ),
             Footer(
+              users: _backEndDBUsersStream.stream,
               width: footerWidth,
               height: footerHeight,
             ),

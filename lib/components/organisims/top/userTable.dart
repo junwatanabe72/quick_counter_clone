@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:quick_counter_clone/models/user.dart';
-import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:quick_counter_clone/util/hook/changeIntegerToString.dart';
-import "package:quick_counter_clone/util/hook/map.dart";
 
 class UserTable extends StatelessWidget {
+  final Stream<List<User>> users;
   final String mode;
-  UserTable({this.mode});
+  UserTable({this.users, this.mode});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getUsers(this.mode),
-        builder: (context, AsyncSnapshot<List<User>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("");
-          } else {
-            if (snapshot.hasData) {
-              if (snapshot.data.length == 0) {
-                return Text("");
-              }
-              return Column(children: [
-                ...snapshot.data.indexedMap((index, user) => Align(
-                    alignment: Alignment.topLeft,
-                    child: switchMode(user, this.mode, index)))
-              ]);
-            } else {
-              return Text("");
-            }
+    return StreamBuilder(
+        stream: this.users,
+        builder: (context, AsyncSnapshot<List<User>> snapShot) {
+          if (snapShot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
           }
+          if (snapShot.data.length == 0) {
+            return Text("");
+          }
+          final numbersList =
+              new List.generate(snapShot.data.length - 1, (i) => i);
+          return ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              ...numbersList.map((int num) {
+                if (snapShot.data.length < num) {
+                  return Text("");
+                }
+                return Container(
+                    width: 150,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: switchMode(snapShot.data[num], this.mode, num),
+                    ));
+              })
+            ],
+          );
         });
   }
 
@@ -47,7 +55,6 @@ class UserTable extends StatelessWidget {
             style: TextStyle(
               height: 1.0,
             ));
-
         break;
       default:
         return Text(
