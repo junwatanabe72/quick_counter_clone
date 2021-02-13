@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quick_counter_clone/services/http/index.dart';
-// import 'package:quick_counter_clone/services/http/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quick_counter_clone/db/index.dart';
 import 'package:quick_counter_clone/models/user.dart';
@@ -8,10 +7,8 @@ import 'package:quick_counter_clone/models/user.dart';
 class UserStore extends ChangeNotifier {
   User _user;
   List<User> _users = [];
-  List<User> _globalUsers;
   User get user => _user;
   List<User> get users => _users;
-  List<User> get globalUsers => _globalUsers;
 
   setUser(User user) {
     this._user = user;
@@ -20,11 +17,6 @@ class UserStore extends ChangeNotifier {
 
   setUsers(List<User> users) {
     this._users = users;
-    notifyListeners();
-  }
-
-  setGlobalUsers(List<User> users) {
-    this._globalUsers = globalUsers;
     notifyListeners();
   }
 
@@ -60,13 +52,9 @@ class UserStore extends ChangeNotifier {
     fetchUsers();
   }
 
-  Future<List<User>> fetchGlobalUser(String mode) async {
-    final fetchedUser = await getUsers(mode);
-    print("async");
-    print(fetchedUser);
-    setGlobalUsers(fetchedUser);
-    // return globalUsers;
-    return fetchedUser;
+  Future<List<User>> fetchBackEndDBlUsers(String mode) async {
+    final fetchedackEndDBUsers = await getUsers(mode);
+    return fetchedackEndDBUsers;
   }
 
   createUser(String name) async {

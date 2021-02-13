@@ -33,7 +33,8 @@ class SelectButtons extends StatelessWidget {
                     this.changeGameMode(key);
                     final _backEndDBUsers = await context
                         .read<UserStore>()
-                        .fetchGlobalUser(context.read<GameStore>().game.mode);
+                        .fetchBackEndDBlUsers(
+                            context.read<GameStore>().game.mode);
                     this.sink.add(_backEndDBUsers);
                   },
                   width: this.width / 3.2))

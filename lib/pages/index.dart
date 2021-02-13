@@ -26,7 +26,7 @@ class _TopState extends State<Top> {
 
   void setBackEndInitialDBUsers() async {
     final _mode = context.read<GameStore>().game.mode;
-    final select = await context.read<UserStore>().fetchGlobalUser(_mode);
+    final select = await context.read<UserStore>().fetchBackEndDBlUsers(_mode);
     _backEndDBUsersStream.sink.add(select);
     // });
   }

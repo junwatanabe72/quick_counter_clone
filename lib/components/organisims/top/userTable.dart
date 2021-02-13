@@ -18,8 +18,9 @@ class UserTable extends StatelessWidget {
           if (snapShot.data.length == 0) {
             return Text("");
           }
-          final numbersList =
-              new List.generate(snapShot.data.length - 1, (i) => i);
+          final maxLength =
+              snapShot.data.length > 10 ? 10 : snapShot.data.length - 1;
+          final numbersList = new List.generate(maxLength, (i) => i);
           return ListView(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
