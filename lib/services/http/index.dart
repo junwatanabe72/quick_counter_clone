@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:quick_counter_clone/models/user.dart';
 
-const baseUrl = "192.168.0.11:3000";
+const baseUrl = "192.168.100.123:3000";
 const prefix = "/users/";
 Future<List<User>> getUsers(String mode) async {
   String _exchangeUserAttr(String mode) {

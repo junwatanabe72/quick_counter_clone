@@ -6,7 +6,6 @@ import 'package:quick_counter_clone/components/atoms/Button.dart';
 import 'package:quick_counter_clone/models/user.dart';
 import 'package:quick_counter_clone/stores/game.dart';
 import 'package:quick_counter_clone/stores/user.dart';
-// import 'package:quick_counter_clone/stores/user.dart';
 import 'package:quick_counter_clone/util/var/index.dart';
 
 class SelectButtons extends StatelessWidget {
@@ -32,9 +31,10 @@ class SelectButtons extends StatelessWidget {
                   selected: gameModes[key] == _mode,
                   onTap: () async {
                     this.changeGameMode(key);
-                    final select =
-                        await context.read<UserStore>().fetchGlobalUser(_mode);
-                    this.sink.add(select);
+                    final _backEndDBUsers = await context
+                        .read<UserStore>()
+                        .fetchGlobalUser(context.read<GameStore>().game.mode);
+                    this.sink.add(_backEndDBUsers);
                   },
                   width: this.width / 3.2))
               .toList()),

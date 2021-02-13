@@ -22,12 +22,25 @@ class Top extends StatefulWidget {
 }
 
 class _TopState extends State<Top> {
-  final _dbUsers = StreamController<List<User>>();
+  final _backEndDBUsersStream = StreamController<List<User>>();
+
+  void setBackEndInitialDBUsers() async {
+    final _mode = context.read<GameStore>().game.mode;
+    final select = await context.read<UserStore>().fetchGlobalUser(_mode);
+    _backEndDBUsersStream.sink.add(select);
+    // });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setBackEndInitialDBUsers();
+  }
 
   @override
   void dispose() {
     // StreamControllerは必ず開放する
-    _dbUsers.close();
+    _backEndDBUsersStream.close();
     super.dispose();
   }
 
@@ -74,7 +87,7 @@ class _TopState extends State<Top> {
             AppTitle(
               width: titleWidth,
               height: titleHeight,
-              title: ["Quick", "Contre"],
+              title: ["Quick", "Countre"],
             ),
             UserName(
               width: userNameWidth,
@@ -90,14 +103,14 @@ class _TopState extends State<Top> {
                     changeGameMode: _changeGameMode,
                     width: buttonWidth,
                     height: buttonHeight,
-                    sink: _dbUsers.sink,
+                    sink: _backEndDBUsersStream.sink,
                   )
                 : Space(height: hiddenButtonHeight),
             Space(
               height: spaceHeight,
             ),
             Footer(
-              users: _dbUsers.stream,
+              users: _backEndDBUsersStream.stream,
               width: footerWidth,
               height: footerHeight,
             ),
